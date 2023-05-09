@@ -3,37 +3,34 @@
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
 	<title>校内储存</title>
-	<style>
-		.text{
-			padding: 1% 1%;
-			font-size: 15px;
-		}
-		.button{
-			padding: 1% 1%;
-			font-size: 17px;
-		}
-	</style>
+	<style type="text/css">@import"css/index.css";</style>
 </head>
 <body>
-	<div align="center">
-	<input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-	<input type="button" value="照明充值" onclick = "lightingRecharge()" class="button"/>
-	<input type="button" value="余额" onclick = "goLight()" class="button"/>
-	<br>
-	<input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-	<input type="button" value="空调充值" onclick = "airconditionRecharge()" class="button"/>
-	<input type="button" value="余额" onclick = "goAir()" class="button"/>
-	<ul>
-		<li><a href="http://qndxx.youth54.cn/SmartLA/dxx.w?method=enterIndexPage&fxopenid=&fxversion=">青年大学习（微信端）</a></li>
-		<li><a href="timetable.html">课程表</a></li>
-		<li><a href="https://mdkd.pinduoduo.com/weixin/package?station_code=A001103404">多多快递</a></li>
-		<li><a href="https://keepwork.com/crimtea/school/index">回到旧网站</a></li>
-		
-    </ul>
+	<div class="root">
+		<div class="header">
+			<div class="header_bar" align="center">
+				<div class="main">校内储存</div>
+			</div>
+		</div>
+		<div class="root-page" align="center">
+			<div class="card" align="center">
+				<input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+				<input type="button" value="照明充值" onclick = "lightingRecharge()" class="button"/>
+				<input type="button" value="余额" onclick = "goLight()" class="button"/>
+				<br>
+				<input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+				<input type="button" value="空调充值" onclick = "airconditionRecharge()" class="button"/>
+				<input type="button" value="余额" onclick = "goAir()" class="button"/>
+				<ul>
+					<li><a href="http://qndxx.youth54.cn/SmartLA/dxx.w?method=enterIndexPage&fxopenid=&fxversion=">青年大学习（微信端）</a></li>
+					<li><a href="timetable.html">课程表</a></li>
+					<li><a href="https://mdkd.pinduoduo.com/weixin/package?station_code=A001103404">多多快递</a></li>
+					<li><a href="https://keepwork.com/crimtea/school/index">回到旧网站</a></li>
+				</ul>
+			</div>
+		</div>
 	</div>
 	<script type="text/javascript">
-  
-		document.write("<hr/>");
 		
 		var var_light = document.getElementById("text_light");
 		var var_air = document.getElementById("text_air");
