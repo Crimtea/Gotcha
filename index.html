@@ -14,13 +14,20 @@
 		</div>
 		<div class="root-page" align="center">
 			<div class="card" align="center">
-				<input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-				<input type="button" value="照明充值" onclick = "lightingRecharge()" class="button"/>
-				<input type="button" value="余额" onclick = "goLight()" class="button"/>
-				<br>
-				<input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-				<input type="button" value="空调充值" onclick = "airconditionRecharge()" class="button"/>
-				<input type="button" value="余额" onclick = "goAir()" class="button"/>
+				<div class="recharge">
+					<div class="light">
+						<input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+						<input type="button" value="照明充值" onclick = "lightingRecharge()" class="button"/>
+						<input type="button" value="余额" onclick = "goLight()" class="button"/>
+					</div>
+					<br>
+					<div class="air">
+						<input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+						<input type="button" value="空调充值" onclick = "airconditionRecharge()" class="button"/>
+						<input type="button" value="余额" onclick = "goAir()" class="button"/>
+					</div>
+				</div>
+				
 				<ul>
 					<li><a href="http://qndxx.youth54.cn/SmartLA/dxx.w?method=enterIndexPage&fxopenid=&fxversion=">青年大学习（微信端）</a></li>
 					<li><a href="timetable.html">课程表</a></li>
