@@ -5,13 +5,18 @@ html,body{hieght: 100%; padding: 0; margin: 0;}
 
 .header{background-color: #2D2F33; height: 60px; display: flex; align-items: center;}
 .header_bar{flex-grow: 1;}
-.main{color: #FCFCFC;align-items: center;width: auto; font-size: 25px;}
+.main{color: #FCFCFC;align-items: center; width: auto; font-size: 25px;}
 
-.root-page{background-color: #F0F1F5; flex-grow: 1;}
+.root-page{background-color: #F0F1F5; flex-grow: 1; display: flex; flex-direction: column;}
+.box{flex-grow: 1;}
 .card{padding: 20px 20px; background-color: #FFFFFF}
 .recharge{display: flex; flex-direction: column}
 .light{flex-grow: 1; display: flex; justify-content: center;}
 .air{flex-grow: 1; display: flex; justify-content: center;}
+
+.footer{background-color: #2D2F33; height: 80px; display: flex; align-items: center;}
+.footer_bar{flex-grow: 1;}
+.footer_word{color: #FCFCFC;align-items: center; width: auto;}
 
 .text{
 	padding: 1% 1%;
