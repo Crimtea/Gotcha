@@ -9,11 +9,13 @@ html,body{height: 100%;padding: 0;margin: 0;}
 
 /*主要页面*/
 .root{height: 100%; display: flex; flex-direction: column;}
-.root_page{background-color: #F7F8FC; flex-grow: 1; padding-top: 100px;padding-bottom: 40px; padding-left: 18%;padding-right: 18%;}
+.root_page{background-color: #F7F8FC; flex-grow: 1; padding-top: 100px;padding-bottom: 90px; padding-left: 12%;padding-right: 12%;}
 
 /*页面内主体*/
-.page{background-color: #FFFFFF; width: auto;height: 100%;}
-.card{background-color: #FFFFFF;}
+/*.page 垂直弹性布局，水平居中*/
+.page{background-color: #FFFFFF; width: auto;height: 100%; display: flex; flex-direction: column; align-items: center; padding-top: 50px;}
+.card{background-color: #FFFFFF; width: 75%; padding: 5px; padding-bottom: 15px; margin: 5px; border-bottom: 1px dashed black;}
 
-.footer{background-color: #2D2F33; height: 100px; display: flex; justify-content: center;align-items: center;}
+/*底部*/
+.footer{background-color: #2D2F33; height: 80px; display: flex; justify-content: center;align-items: center;}
 .check{color: #FFFFFF;}

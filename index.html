@@ -1,84 +1,50 @@
 <!doctype html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" charset="utf-8">
-	<title>校内储存</title>
-	<style type="text/css">@import"css/index.css";</style>
-</head>
-<body>
-	<div class="root">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>正在访问存储池...</title>
+		<style type="text/css">@import"css/style.css";</style>
+		<style type="text/css">@import"css/index.css";</style>
+	</head>
+	<body>
 		<div class="header">
-			<div class="header_bar" align="center">
-				<div class="main">校内储存</div>
+			<div class="main">校内储存</div>
+		</div>
+		<div class="root">
+		  <div class="root_page">
+			  <div class="page">
+				  <div class="card" id="recharge">
+					  <!--在此处div内写内容-->
+					  <div id="light">
+						  <input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+						  <button id="lightRecharge">照明充值</button>
+						  <button id="goLight">余额</button>
+					  </div>
+					  <div id="air">
+						  <input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+						  <button id="airRecharge">空调充值</button>
+						  <button id="goAir">余额</button>
+					  </div>
+				  </div>
+				  <div class="card" id="web_list">
+					  <!--在此处div内写内容-->
+					  <a href="http://qndxx.youth54.cn/SmartLA/dxx.w?method=enterIndexPage&fxopenid=&fxversion="><button class="web_button">青年大学习</button></a>
+					  <a href="https://mdkd.pinduoduo.com/weixin/package?station_code=A001103404"><button class="web_button">多多快递</button></a>
+					  <a href="timetable.html"><button class="web_button">课程表</button></a>
+					  <a href="test.html"><button class="web_button">进入测试页面</button></a>
+					  <a href="https://keepwork.com/crimtea/school/index"><button class="web_button">回到旧仓库</button></a>
+				  </div>
+			  </div>
+			</div>
+			<div class="footer">
+				<div class="check">- 0137 -</div>
 			</div>
 		</div>
-		<div class="root-page" align="center">
-			<div class="box">
-				<div class="card" align="center">
-					<div class="recharge">
-						<div class="light">
-							<input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-							<input type="button" value="照明充值" onclick = "lightingRecharge()" class="button"/>
-							<input type="button" value="余额" onclick = "goLight()" class="button"/>
-						</div>
-						<br>
-						<div class="air">
-							<input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-							<input type="button" value="空调充值" onclick = "airconditionRecharge()" class="button"/>
-							<input type="button" value="余额" onclick = "goAir()" class="button"/>
-						</div>
-					</div>
-				
-					<ul>
-						<li><a href="http://qndxx.youth54.cn/SmartLA/dxx.w?method=enterIndexPage&fxopenid=&fxversion=">青年大学习（微信端）</a></li>
-						<li><a href="timetable.html">课程表</a></li>
-						<li><a href="https://mdkd.pinduoduo.com/weixin/package?station_code=A001103404">多多快递</a></li>
-						<li><a href="https://keepwork.com/crimtea/school/index">回到旧网站</a></li>
-						<li><a href="test.html">进入测试页面</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="footer" align="center">
-				<div class="footer_bar">
-					<div class="footer_word">- 2153 -</div>
-				</div>
-			</div>
-		</div>
-		
-</div>
-	<script type="text/javascript">
-		
-		var var_light = document.getElementById("text_light");
-		var var_air = document.getElementById("text_air");
-		
-		function goLight(){
-			window.open('http://dk.suet.edu.cn/dk_pay/chongzhi_list.php?data=%7B%22sushe%22%3A%226e809e33-3b1a-4903-baa3-f2e43898c127%22%7D','_self')
-		}
-		
-		function goAir(){
-			window.open('http://dk.suet.edu.cn/dk_pay/chongzhi_list.php?data=%7B%22sushe%22%3A%223983f93d-6002-4045-a55d-1da2efdc2794%22%7D','_self')
-		}
-		
-        function lightingRecharge(){
-			if (var_light.value == ''){
-                  alert("请输入金额");
-              }else {
-				  window.open('http://dk.suet.edu.cn/dk_pay/wx_pay.php?data={%22xiaoqu%22:%224865894c-9415-4035-a5be-c8ceebd2702a%22,%22louzuo%22:%222b27c349-9851-45bb-b15f-09637c413dfd%22,%22louceng%22:%2212%22,%22sushe%22:%226e809e33-3b1a-4903-baa3-f2e43898c127%22,%22price%22:%22'+(var_light.value - var_light.value%6)+'%22}','_self');
-			  }
-          }
-		
-		function airconditionRecharge(){
-			if (var_air.value == ''){
-                  alert("请输入金额");
-              }else {
-				  window.open('http://dk.suet.edu.cn/dk_pay/wx_pay.php?data={%22xiaoqu%22:%22ba84c2fb-5bf7-459e-976d-bdee08ec036f%22,%22louzuo%22:%222aac1ebb-4d96-4878-8fc5-35b5af774e61%22,%22louceng%22:%2212%22,%22sushe%22:%223983f93d-6002-4045-a55d-1da2efdc2794%22,%22price%22:%22'+(var_air.value - var_air.value%6)+'%22}','_self');
-			  }
-          }
-		
-	</script>
-</body>
+		<script type="text/javascript" src="js/index.js"></script>
+	</body>
 </html>
-
 <!--
 <div align="center">
   <video width="300" height="375" controls>
