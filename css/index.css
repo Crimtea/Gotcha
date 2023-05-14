@@ -12,8 +12,9 @@
 }
 #readme {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     justify-content: center;
-    align-items: center;
 }
 #web_list {
     display: flex;
