@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genshin</title>
+<style type="text/css">
+@import"css/style.css";
+</style>
+<style type="text/css">
+@import"css/genshin.css";
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="main">Genshin</div>
+</div>
+<div class="root">
+    <div class="root_page">
+        <div class="page">
+            <div class="card" id="form">
+                <!--在此处div内写内容-->
+                <p>纠缠之缘：
+                <input type="text" id="text_own" name="own" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/></p>
+                <p>原石：
+                <input type="text" id="text_stone" name="stone" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/></p>
+                <p>已垫：
+                <input type="text" id="text_amass_5" name="amass_5" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/></p>
+                <p>大保底：<input type="checkbox" id="nextTure" value="0"></p>
+                <button id="run">点击我</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="check">- 2216 -</div>
+    </div>
+</div>
+<script type="text/javascript" src="js/genshin.js"></script>
+</body>
+</html>
+<!--
+<div align="center">
+  <video width="300" height="375" controls>
+    <source src="https://api.keepwork.com/ts-storage/siteFiles/23723/raw#findme.mp4" type="video/mp4">
+  </video>
+</div>
+-->
