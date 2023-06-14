@@ -45,10 +45,6 @@ function main(own, amass_4, amass_5,
     var not_5 = 0;
     var all_num = own;
 
-    if (own <= 0) {
-        return "不足1抽";
-    }
-
     while (own > 0) {
         own = own - 1;
         if (prob_5(amass_5 + 1)) {
@@ -102,9 +98,9 @@ function main(own, amass_4, amass_5,
             amass_5 += 1; // 五星垫卡+1
             timer_3 += 1; // 统计三星卡数量
         }
-        if (codeTrue && code >= 5) {
-            own += parseInt(code / 5);
-            all_num += parseInt(code / 5);
+        if (codeTrue || code >= 5) {
+            own = own + parseInt(code / 5);
+            all_num = all_num + parseInt(code / 5);
             code = code % 5;
         }
     }
@@ -115,13 +111,14 @@ function main(own, amass_4, amass_5,
     var timer_4 = up_4 + not_4;
     var timer_5 = up_5 + not_5;
     var text_amass = `
-        三星卡数量：${timer_3}\n
-        四星卡数量：${timer_4+3}\n
-        五星卡数量：${timer_5}\n
-        四星up卡数量：${up_4+3}\n
-        五星up卡数量：${up_5}\n
-        五星占比为：${(((timer_5 / all_num) * 100).toFixed(2) + "%")}\n
-        五星平均次数：${(list_5.reduce((total, current) => total + current, 0)/list_5.length).toFixed(2)}\n`;
+        总计：${all_num}；\n
+        三星卡数量：${timer_3}；\n
+        四星卡数量：${timer_4+3}；\n
+        五星卡数量：${timer_5}；\n
+        四星up卡数量：${up_4+3} [${p1},${p2},${p3}]；\n
+        五星up卡数量：${up_5}；\n
+        五星占比为：${(((timer_5 / all_num) * 100).toFixed(2) + "%")}；\n
+        五星平均次数：${(list_5.reduce((total, current) => total + current, 0)/list_5.length).toFixed(2)}。\n`;
     //    alert(list_5);
     return text_amass;
 
@@ -136,15 +133,20 @@ run.onclick = function () {
     var nextTrue_5 = document.getElementById("nextTrue_5").checked;
     var code = document.getElementById("text_code").value || 0;
     var codeTrue = document.getElementById("codeTrue").checked;
-    var p1 = document.getElementById("text_p1") || -1;
-    var p2 = document.getElementById("text_p2") || -1;
-    var p3 = document.getElementById("text_p3") || -1;
-
+    var p1 = Number(document.getElementById("p1").value) || -1;
+    var p2 = Number(document.getElementById("p2").value) || -1;
+    var p3 = Number(document.getElementById("p3").value) || -1;
 
     own = own + parseInt(stone / 160); // 将原石换成纠缠之缘
-    var dict_end = main(own, amass_4, amass_5, nextTrue_4.value, nextTrue_5.value, code, codeTrue.value, p1, p2, p3);
-    alert(dict_end);
-    //    var list_test = [own, stone, amass_4, amass_5, nextTrue_4, nextTrue_5, code, codeTrue, p1, p2, p3];
-    //    alert(list_test);
-
+    if (own >= 1 || code >= 5) {
+        if (own < 1) {
+            alert("由于纠缠之缘个数不足1，且原石不足160，自动使用了最初始的星辉。");
+            own = own + parseInt(code / 5);
+            code = code % 5;
+        }
+        var text_end = main(own, amass_4, amass_5, nextTrue_4, nextTrue_5, code, codeTrue, p1, p2, p3);
+        alert(text_end);
+    } else {
+        alert("现资源不足一抽，无法开始模拟。");
+    }
 };
