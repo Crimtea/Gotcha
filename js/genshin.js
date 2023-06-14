@@ -63,18 +63,18 @@ function main(own, amass_4, amass_5,
                 not_5 += 1;
                 nextTrue_5 = true;
             }
-        } else if (prob_4(amass_4 + 1)) {  // 抽到四星
-            code += 2;  // 星辉+2
-            amass_4 = 0;  // 四星垫卡归零
-            amass_5 += 1;  // 五星垫卡+1
-            if (odds(0.5) || nextTrue_4) {  // 50%UP或使用大保底获得四星
+        } else if (prob_4(amass_4 + 1)) { // 抽到四星
+            code += 2; // 星辉+2
+            amass_4 = 0; // 四星垫卡归零
+            amass_5 += 1; // 五星垫卡+1
+            if (odds(0.5) || nextTrue_4) { // 50%UP或使用大保底获得四星
                 var p_num = Math.floor(Math.random() * 3) + 1;
                 switch (p_num) {
-                    case 1:  // 抽到四星角色一
-                        if (p1 < 6) {  //命座<6时
-                            p1 += 1;  // 命座+1
-                        } else {  // 命座>=6时
-                            code += 3;  // 星辉额外+3，总计+5
+                    case 1: // 抽到四星角色一
+                        if (p1 < 6) { //命座<6时
+                            p1 += 1; // 命座+1
+                        } else { // 命座>=6时
+                            code += 3; // 星辉额外+3，总计+5
                         }
                         break;
                     case 2:
@@ -92,15 +92,15 @@ function main(own, amass_4, amass_5,
                         }
                         break;
                 }
-                nextTrue_4 = false;  // 获得四星UP后进入四星小保底
-            } else {  // 抽到四星非UP
-                not_4 += 1;  // 统计四星非UP数量
-                nextTrue_4 = true;  // 进入四星大保底
+                nextTrue_4 = false; // 获得四星UP后进入四星小保底
+            } else { // 抽到四星非UP
+                not_4 += 1; // 统计四星非UP数量
+                nextTrue_4 = true; // 进入四星大保底
             }
-        } else {  // 抽到三星
-            amass_4 += 1;  // 四星垫卡+1
-            amass_5 += 1;  // 五星垫卡+1
-            timer_3 += 1;  // 统计三星卡数量
+        } else { // 抽到三星
+            amass_4 += 1; // 四星垫卡+1
+            amass_5 += 1; // 五星垫卡+1
+            timer_3 += 1; // 统计三星卡数量
         }
         if (codeTrue && code >= 5) {
             own += parseInt(code / 5);
@@ -114,7 +114,7 @@ function main(own, amass_4, amass_5,
     var up_4 = p1 + p2 + p3;
     var timer_4 = up_4 + not_4;
     var timer_5 = up_5 + not_5;
-    var text_amass =`
+    var text_amass = `
         三星卡数量：${timer_3}\n
         四星卡数量：${timer_4+3}\n
         五星卡数量：${timer_5}\n
@@ -122,7 +122,7 @@ function main(own, amass_4, amass_5,
         五星up卡数量：${up_5}\n
         五星占比为：${(((timer_5 / all_num) * 100).toFixed(2) + "%")}\n
         五星平均次数：${(list_5.reduce((total, current) => total + current, 0)/list_5.length).toFixed(2)}\n`;
-//    alert(list_5);
+    //    alert(list_5);
     return text_amass;
 
 }
