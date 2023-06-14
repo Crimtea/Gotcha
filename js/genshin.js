@@ -136,17 +136,20 @@ run.onclick = function () {
     var p1 = Number(document.getElementById("p1").value) || -1;
     var p2 = Number(document.getElementById("p2").value) || -1;
     var p3 = Number(document.getElementById("p3").value) || -1;
-
-    own = own + parseInt(stone / 160); // 将原石换成纠缠之缘
-    if (own >= 1 || code >= 5) {
-        if (own < 1) {
-            alert("由于纠缠之缘个数不足1，且原石不足160，自动使用了最初始的星辉。");
-            own = own + parseInt(code / 5);
-            code = code % 5;
-        }
-        var text_end = main(own, amass_4, amass_5, nextTrue_4, nextTrue_5, code, codeTrue, p1, p2, p3);
-        alert(text_end);
+    if (p1 > 6 || p2 > 6 || p3 > 6) {
+        alert("四星角色的命座输入有误，请重新输入。");
     } else {
-        alert("现资源不足一抽，无法开始模拟。");
+        own = own + parseInt(stone / 160); // 将原石换成纠缠之缘
+        if (own >= 1 || code >= 5) {
+            if (own < 1) {
+                alert("由于纠缠之缘个数不足1，且原石不足160，自动使用了最初始的星辉。");
+                own = own + parseInt(code / 5);
+                code = code % 5;
+            }
+            var text_end = main(own, amass_4, amass_5, nextTrue_4, nextTrue_5, code, codeTrue, p1, p2, p3);
+            alert(text_end);
+        } else {
+            alert("现资源不足一抽，无法开始模拟。");
+        }
     }
 };
