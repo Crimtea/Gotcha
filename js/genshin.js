@@ -36,7 +36,7 @@ function prob_5(amass_5_int) {
 // main
 function main(own, amass_4, amass_5,
     nextTrue_4, nextTrue_5,
-    code = 0, codeTrue,
+    code, codeTrue,
     p1, p2, p3) {
     var timer_3 = 0;
     var list_5 = [];
@@ -98,7 +98,7 @@ function main(own, amass_4, amass_5,
             amass_5 += 1; // 五星垫卡+1
             timer_3 += 1; // 统计三星卡数量
         }
-        if (codeTrue || code >= 5) {
+        if (codeTrue && code >= 5) {
             own = own + parseInt(code / 5);
             all_num = all_num + parseInt(code / 5);
             code = code % 5;
@@ -140,6 +140,7 @@ run.onclick = function () {
         alert("四星角色的命座输入有误，请重新输入。");
     } else {
         own = own + parseInt(stone / 160); // 将原石换成纠缠之缘
+        stone = stone%160;
         if (own >= 1 || code >= 5) {
             if (own < 1) {
                 alert("由于纠缠之缘个数不足1，且原石不足160，自动使用了最初始的星辉。");
