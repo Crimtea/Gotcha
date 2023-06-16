@@ -50,7 +50,7 @@ function main(own, amass_4, amass_5, nextTrue_4,
     while (own > 0) {
         own = own - 1;
         if (prob_5(amass_5 + 1)) {
-            list_5.push(Number(amass_5));
+            list_5.push(Number(amass_5 + 1));
             amass_4 += 1;
             amass_5 = 0;
             code += 10;
