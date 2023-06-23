@@ -2,7 +2,7 @@
 /* CSS Document */
 .file_card {
     height: 50px;
-    width: 350px;
+    width: 400px;
     background-color: #F3F3F3;
     border: 1px solid #D9D9D9;
     display: flex;
@@ -14,31 +14,51 @@
     margin: 5px 0px;
 }
 .file_content {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 .file_icon {
-    margin-right: 10px;
+    height: 45px;
+    width: 45px;
+    background-image: url("../images/pdf.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 .file_info {
     font-size: 14px;
-    width: 200px; /* 设置 div 的宽度 */
+    width: 270px; /* 设置 div 的宽度 */
     white-space: nowrap; /* 禁止文本换行 */
     overflow: hidden; /* 隐藏超出容器的文本 */
     text-overflow: ellipsis; /* 在文本溢出时添加省略号 */
+    margin-left: 10px;
 }
 .split {
     border-left: 1px solid #979797;
     height: 41px;
     margin: 0px 20px;
 }
-.download_text {
-    white-space: nowrap;
+.download_icon {
+    height: 30px;
+    width: 30px;
+    background-image: url("../images/download.svg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 #file_list {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: center;
+}
+@media (max-width: 768px) {
+    .file_card {
+        width: 100%;
+    }
+    .file_info {
+        width: 65%
+    }
 }
