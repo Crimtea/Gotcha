@@ -1,0 +1,23 @@
+/* CSS Document */
+#resources, #situation {
+    display: flex;
+    flex-direction: column;
+}
+#main_res, #role_num, #four, #five, #notice, #role_num {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin-bottom: -15px;
+}
+#notice {
+    color: #999999;
+}
+#p1, #p2, #p3 {
+    width: 25px;
+}
+#run {
+    margin: 10px;
+    font-size: 16px;
+    height: 30px;
+    width: 150px;
+}
