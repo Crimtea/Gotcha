@@ -23,60 +23,65 @@
                 <!--在此处div内写内容-->
                 <h3>拥有资源：</h3>
                 <div id="main_res">
-                    <div>
-                        <p>原石：
-                            <input type="text" id="text_stone" name="stone" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-                            &emsp;</p>
-                    </div>
-                    <div>
-                        <p> 纠缠之缘：
-                            <input type="text" id="text_own" name="own" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-                        </p>
-                    </div>
+                    <p>
+                    <div> 原石：
+                        <input type="text" id="text_stone" name="stone" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                        &emsp; </div>
+                    <div> 纠缠之缘：
+                        <input type="text" id="text_own" name="own" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                        &emsp; </div>
+                    </p>
                 </div>
                 <div id="aux_res">
-                    <p>星辉：
+                    <p>
+                    <div>星辉：
                         <input type="text" id="text_code" name="code" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-                        （自动使用星辉
+                    </div>
+                    <div> （自动使用星辉
                         <input type="checkbox" id="codeTrue" checked="checked">
-                        ） </p>
+                        ） </div>
+                    </p>
                 </div>
             </div>
             <div class="card" id="situation">
                 <h3>卡池状况：</h3>
                 <div id="four">
-                    <p>四星已垫：
+                    <p>
+                    <div>四星已垫：
                         <input type="text" id="text_amass_4" name="amass_4" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-                        （四星大保底
+                    </div>
+                    <div>（四星大保底
                         <input type="checkbox" id="nextTrue_4">
-                        ） </p>
+                        ）</div>
+                    </p>
                 </div>
                 <div id="five">
-                    <p>五星已垫：
+                    <p>
+                    <div>五星已垫：
                         <input type="text" id="text_amass_5" name="amass_5" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-                        （五星大保底
+                    </div>
+                    <div>（五星大保底
                         <input type="checkbox" id="nextTrue_5">
-                        ） </p>
+                        ）</div>
+                    </p>
                 </div>
                 <div id="notice">
-                    <p><a style="color: black">四星角色的命座：</a>（默认-1 代表为拥有该四星）</p>
+                    <p>
+                    <div style="color: black">四星角色命座：</div>
+                    <div>默认-1指未拥有该角色</div>
+                    </p>
                 </div>
                 <div id="role_num">
-                    <div>
-                        <p>一号角色
-                            <input type="text" id="p1" name="text_p1" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
-                            命；&emsp;</p>
-                    </div>
-                    <div>
-                        <p>二号角色
-                            <input type="text" id="p2" name="text_p2" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
-                            命;&emsp;</p>
-                    </div>
-                    <div>
-                        <p>三号角色
-                            <input type="text" id="p3" name="text_p3" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
-                            命。</p>
-                    </div>
+                    <div> 角色一
+                        <input type="text" id="p1" name="text_p1" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
+                        命； </div>
+                    <div> 角色二
+                        <input type="text" id="p2" name="text_p2" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
+                        命； </div>
+                    <div> 角色三
+                        <input type="text" id="p3" name="text_p3" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
+                        命。 </div>
+                    </p>
                 </div>
             </div>
             <div>
@@ -85,7 +90,7 @@
         </div>
     </div>
     <div class="footer">
-        <div class="check">- 1533 -</div>
+        <div class="check">- 0815 -</div>
     </div>
 </div>
 <script type="text/javascript" src="../js/genshin.js"></script>

@@ -1,16 +1,28 @@
 /* CSS Document */
+h3 {
+    margin-left: 20%;
+}
 #resources, #situation {
     display: flex;
     flex-direction: column;
 }
-#main_res, #role_num, #four, #five, #notice, #role_num {
+#main_res, #aux_res, #four, #five, #notice, #role_num {
+    margin-left: 20%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    margin-bottom: -15px;
+    flex-wrap: wrap;
+}
+#role_num {
+    display: flex;
+    flex-direction: column;
 }
 #notice {
     color: #999999;
+}
+#text_stone, #text_own, #text_code {
+    width: 100px;
+}
+#text_amass_4, #text_amass_5 {
+    width: 50px;
 }
 #p1, #p2, #p3 {
     width: 25px;
