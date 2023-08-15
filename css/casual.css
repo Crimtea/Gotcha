@@ -22,7 +22,7 @@
 .file_icon {
     height: 45px;
     width: 45px;
-    background-image: url("../images/pdf.svg");
+    background-image: url("../image/pdf.svg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -43,7 +43,7 @@
 .download_icon {
     height: 30px;
     width: 30px;
-    background-image: url("../images/download.svg");
+    background-image: url("../image/download.svg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -59,6 +59,6 @@
         width: 100%;
     }
     .file_info {
-        width: 65%
+        width: 75%
     }
 }

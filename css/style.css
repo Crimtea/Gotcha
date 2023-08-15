@@ -5,7 +5,7 @@ html, body {
     padding: 0;
     margin: 0;
 }
-/*上面的黑蓝色工具条*/
+/*上面的深色工具条*/
 .header {
     background-color: #1F2233;
     width: 100%;
@@ -63,5 +63,13 @@ html, body {
     align-items: center;
 }
 .check {
-    color: #FFFFFF;
+    color: #999999;
+}
+@media (max-width: 768px) {
+    .root_page {
+        background-color: #FFFFFF;
+    }
+    .card {
+        width: 100%;
+    }
 }
