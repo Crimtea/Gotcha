@@ -65,6 +65,11 @@ html, body {
 .check {
     color: #999999;
 }
+/*将同一个<div><p>...</p></div>中的<div>块弹性的放入一行*/
+.a_row {
+    display: flex;
+    flex-wrap: wrap;
+}
 @media (max-width: 768px) {
     .root_page {
         background-color: #FFFFFF;
