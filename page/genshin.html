@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genshin</title>
+<style type="text/css">
+@import"../css/style.css";
+</style>
+<style type="text/css">
+@import"../css/genshin.css";
+</style>
+</head>
+<body>
+<div class="header">
+    <div class="main">Genshin</div>
+</div>
+<div class="root">
+    <div class="root_page">
+        <div class="page">
+            <div class="card" id="resources"> 
+                <!--在此处div内写内容-->
+                <h3>拥有资源：</h3>
+                <div id="main_res">
+                    <p>
+                    <div> 原石：
+                        <input type="text" id="text_stone" name="stone" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                        &emsp; </div>
+                    <div> 纠缠之缘：
+                        <input type="text" id="text_own" name="own" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                        &emsp; </div>
+                    </p>
+                </div>
+                <div id="aux_res">
+                    <p>
+                    <div>星辉：
+                        <input type="text" id="text_code" name="code" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                    </div>
+                    <div> （自动使用星辉
+                        <input type="checkbox" id="codeTrue" checked="checked">
+                        ） </div>
+                    </p>
+                </div>
+            </div>
+            <div class="card" id="situation">
+                <h3>卡池状况：</h3>
+                <div id="four">
+                    <p>
+                    <div>四星已垫：
+                        <input type="text" id="text_amass_4" name="amass_4" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                    </div>
+                    <div>（四星大保底
+                        <input type="checkbox" id="nextTrue_4">
+                        ）</div>
+                    </p>
+                </div>
+                <div id="five">
+                    <p>
+                    <div>五星已垫：
+                        <input type="text" id="text_amass_5" name="amass_5" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                    </div>
+                    <div>（五星大保底
+                        <input type="checkbox" id="nextTrue_5">
+                        ）</div>
+                    </p>
+                </div>
+                <div id="notice">
+                    <p>
+                    <div style="color: black">四星角色命座：</div>
+                    <div>默认-1指未拥有该角色</div>
+                    </p>
+                </div>
+                <div id="role_num">
+                    <div> 角色一
+                        <input type="text" id="p1" name="text_p1" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
+                        命； </div>
+                    <div> 角色二
+                        <input type="text" id="p2" name="text_p2" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
+                        命； </div>
+                    <div> 角色三
+                        <input type="text" id="p3" name="text_p3" placeholder="-1" oninput="value=value.replace(/[^\d]/g,'')" class="text" pattern="[1-6]" maxlength="1"/>
+                        命。 </div>
+                    </p>
+                </div>
+            </div>
+            <div>
+                <button id="run">开始模拟</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="check">- 0815 -</div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/genshin.js"></script>
+</body>
+</html>
+<!--
+<div align="center">
+  <video width="300" height="375" controls>
+    <source src="https://api.keepwork.com/ts-storage/siteFiles/23723/raw#findme.mp4" type="video/mp4">
+  </video>
+</div>
+-->
