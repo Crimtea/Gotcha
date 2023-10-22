@@ -40,5 +40,5 @@ run.onclick = function () {
         人物等级：${plv};
         怪物等级：${mlv};
         怪物抗性：${de}%`)
-//    alert(`暴击伤害为：${damage_crt.toFixed(0)}\n伤害期望为：${damage_avg.toFixed(0)}`)
+    //    alert(`暴击伤害为：${damage_crt.toFixed(0)}\n伤害期望为：${damage_avg.toFixed(0)}`)
 }

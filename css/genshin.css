@@ -1,28 +1,46 @@
 /* CSS Document */
-#resources, #situation {
+#resources,
+#situation {
     display: flex;
     flex-direction: column;
 }
-#main_res, #aux_res, #four, #five, #notice, #role_num {
+
+#main_res,
+#aux_res,
+#four,
+#five,
+#notice,
+#role_num {
     display: flex;
     flex-wrap: wrap;
 }
+
 #role_num {
     display: flex;
     flex-direction: column;
 }
+
 #notice {
     color: #999999;
 }
-#text_stone, #text_own, #text_code {
+
+#text_stone,
+#text_own,
+#text_code {
     width: 100px;
 }
-#text_amass_4, #text_amass_5 {
+
+#text_amass_4,
+#text_amass_5 {
     width: 50px;
 }
-#p1, #p2, #p3 {
+
+#p1,
+#p2,
+#p3 {
     width: 25px;
 }
+
 #run {
     margin: 10px;
     font-size: 16px;
