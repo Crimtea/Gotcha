@@ -40,7 +40,7 @@
         <div class="a_row">
           <p>
           <div style="padding-right: 25px;">暴击率：
-            <input type="text" v-model.number="CRIT_Rate" placeholder="0" oninput="notMath(event)"/>
+            <input type="text" v-model.number="CRIT_Rate" placeholder="0" oninput="notMath(event)" max="100"/>
             %</div>
           <div>暴击伤害：
             <input type="text" v-model.number="CRIT_DMG" placeholder="0" oninput="notMath(event)"/>
@@ -64,7 +64,11 @@
         </div>
       </div>
       <div class="card" id="card_calc">
-          <p>期望伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_Rate/100)*(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}<br/>非暴击伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}<br/>暴击伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
+          <p>期望伤害是: </p>
+          <p v-if="CRIT_Rate <= 0">{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
+          <p v-else-if="CRIT_Rate <= 100">{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_Rate/100)*(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
+          <p v-else>{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
+          <p>（非暴击伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}；暴击伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}）</p>
       </div>
       <div id="other" class="card">
         <h3>其他属性：</h3>
@@ -98,7 +102,7 @@
     </div>
   </div>
   <div class="footer">
-    <div class="check">- 2159 -</div>
+    <div class="check">- 2189 -</div>
   </div>
 </div>
 <script type="text/javascript" src="../js/text.js"></script> 
