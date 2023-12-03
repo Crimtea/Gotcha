@@ -3,10 +3,10 @@
 var run = document.getElementById("calc");
 
 run.onclick = function () {
-    var atk = Number(document.getElementById("text_atk").value) || 0; // 攻击值
-    var mult = Number(document.getElementById("text_mult").value) || 0; // 倍率
-    var crt = Number(document.getElementById("text_crt").value) || 0; // 暴击率
-    var crt_bonus = Number(document.getElementById("text_crt_bonus").value) || 0; // 暴击伤害
+    var atk = Number(document.getElementById("text_atk").value) || 2000; // 攻击值
+    var mult = Number(document.getElementById("text_mult").value) || 100; // 倍率
+    var crt = Number(document.getElementById("text_crt").value) || 50; // 暴击率
+    var crt_bonus = Number(document.getElementById("text_crt_bonus").value) || 100; // 暴击伤害
     var bonus = Number(document.getElementById("text_bonus").value) || 0; // 属性加成
     var reaction = Number(document.getElementById("select_reaction").value) || 1.0; // 元素反应
     var pro = Number(document.getElementById("text_pro").value) || 0; // 精通加成
