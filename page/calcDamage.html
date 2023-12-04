@@ -4,109 +4,110 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>正在访问Gotcha...</title>
+<title>Gotcha: 伤害计算</title>
+<link rel="icon" href="/resources/image/Gotcha.svg">
 <style type="text/css">
-@import"../css/style.css";
+@import"/resources/css/style.css";
 </style>
 <style type="text/css">
-@import"../css/calcDamage.css";
+@import"/resources/css/calcDamage.css";
 </style>
 <script src="https://unpkg.com/vue@next"></script>
 </head>
 <body>
 <div class="header">
-  <div class="main">Gotcha：伤害计算</div>
+    <div class="main">Gotcha：伤害计算</div>
 </div>
 <div class="root">
-  <div class="root_page">
-    <div id="Gdate" class="page">
-      <div id="main" class="card"> <!--在此处div内写内容-->
-        <h3>主要属性：</h3>
-        <div style="padding-right: 25px;">
-          <p>攻击力：
-            <input v-model.number="ATK" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-          </p>
+    <div class="root_page">
+        <div id="Gdate" class="page">
+            <div id="main" class="card"> <!--在此处div内写内容-->
+                <h3>主要属性：</h3>
+                <div style="padding-right: 25px;">
+                    <p>攻击力：
+                        <input v-model.number="ATK" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                    </p>
+                </div>
+                <div>
+                    <p>倍率：
+                        <input type="text" v-model.number="Rate" placeholder="0" oninput="notMath(event)"/>
+                        %</p>
+                </div>
+                <div>
+                    <p>属性加成：
+                        <input type="text" v-model.number="DMG_Bonus" placeholder="0" oninput="notMath(event)"/>
+                        %</p>
+                </div>
+                <div class="a_row">
+                    <p>
+                    <div style="padding-right: 25px;">暴击率：
+                        <input type="text" v-model.number="CRIT_Rate" placeholder="0" oninput="notMath(event)" max="100"/>
+                        %</div>
+                    <div>暴击伤害：
+                        <input type="text" v-model.number="CRIT_DMG" placeholder="0" oninput="notMath(event)"/>
+                        %</div>
+                    </p>
+                </div>
+            </div>
+            <div id="EM" class="card">
+                <h3>反应相关：</h3>
+                <div class="a_row">
+                    <p>
+                    <div style="padding-right: 25px;">元素反应：
+                        <select v-model="ER">
+                            <option v-for="option in options" :value="option.value"> {{ option.text }} </option>
+                        </select>
+                    </div>
+                    <div> 精通加成：
+                        <input type="text" v-model.number="EM_Bonus" placeholder="0" oninput="notMath(event)"/>
+                        % </div>
+                    </p>
+                </div>
+            </div>
+            <div class="card" id="card_calc">
+                <p>期望伤害是: </p>
+                <p v-if="CRIT_Rate <= 0">{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
+                <p v-else-if="CRIT_Rate <= 100">{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_Rate/100)*(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
+                <p v-else>{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
+                <p>（非暴击伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}；暴击伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}）</p>
+            </div>
+            <div id="other" class="card">
+                <h3>其他属性：</h3>
+                <div class="a_row">
+                    <p>
+                    <div style="padding-right: 25px;"> 人物等级：
+                        <input v-model.number="P" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                    </div>
+                    <div>怪物等级：
+                        <input v-model.number="M" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
+                    </div>
+                    </p>
+                </div>
+                <div>
+                    <p> 怪物抗性：
+                        <input type="text" v-model.number="M_RES" placeholder="10" oninput="notMath(event)"/>
+                        % </p>
+                </div>
+            </div>
+            <div class="card">
+                <p>计算过程：</p>
+                <p>一、攻击区：攻击值</p>
+                <p>二、倍率区：倍率</p>
+                <p>三、增伤区：1+属性加成</p>
+                <p>四、暴伤区：(1+暴击率×暴击伤害)</p>
+                <p>五、反应区：元素反应×(1+精通加成)</p>
+                <p>六、防御区：((人物等级+100)/(人物等级+怪物等级+200))</p>
+                <p>七、抗性区：(1-怪物抗性)</p>
+                <p>伤害 = 所有区域的乘积</p>
+            </div>
         </div>
-        <div>
-          <p>倍率：
-            <input type="text" v-model.number="Rate" placeholder="0" oninput="notMath(event)"/>
-            %</p>
-        </div>
-        <div>
-          <p>属性加成：
-            <input type="text" v-model.number="DMG_Bonus" placeholder="0" oninput="notMath(event)"/>
-            %</p>
-        </div>
-        <div class="a_row">
-          <p>
-          <div style="padding-right: 25px;">暴击率：
-            <input type="text" v-model.number="CRIT_Rate" placeholder="0" oninput="notMath(event)" max="100"/>
-            %</div>
-          <div>暴击伤害：
-            <input type="text" v-model.number="CRIT_DMG" placeholder="0" oninput="notMath(event)"/>
-            %</div>
-          </p>
-        </div>
-      </div>
-      <div id="EM" class="card">
-        <h3>反应相关：</h3>
-        <div class="a_row">
-          <p>
-          <div style="padding-right: 25px;">元素反应：
-              <select v-model="ER">
-                  <option v-for="option in options" :value="option.value"> {{ option.text }} </option>
-              </select>
-          </div>
-          <div> 精通加成：
-            <input type="text" v-model.number="EM_Bonus" placeholder="0" oninput="notMath(event)"/>
-            % </div>
-          </p>
-        </div>
-      </div>
-      <div class="card" id="card_calc">
-          <p>期望伤害是: </p>
-          <p v-if="CRIT_Rate <= 0">{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
-          <p v-else-if="CRIT_Rate <= 100">{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_Rate/100)*(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
-          <p v-else>{{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}</p>
-          <p>（非暴击伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}；暴击伤害是: {{ Math.floor(ATK*(Rate/100)*(1+(DMG_Bonus/100))*(1+(CRIT_DMG/100))*ER*(1+(EM_Bonus/100))*(P+100)*(1/(P+M+200))*(1-(M_RES/100))) }}）</p>
-      </div>
-      <div id="other" class="card">
-        <h3>其他属性：</h3>
-        <div class="a_row">
-          <p>
-          <div style="padding-right: 25px;"> 人物等级：
-            <input v-model.number="P" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-          </div>
-          <div>怪物等级：
-            <input v-model.number="M" placeholder="0" oninput="value=value.replace(/[^\d]/g,'')" class="text"/>
-          </div>
-          </p>
-        </div>
-        <div>
-          <p> 怪物抗性：
-            <input type="text" v-model.number="M_RES" placeholder="10" oninput="notMath(event)"/>
-            % </p>
-        </div>
-      </div>
-      <div class="card">
-        <p>计算过程：</p>
-        <p>一、攻击区：攻击值</p>
-        <p>二、倍率区：倍率</p>
-        <p>三、增伤区：1+属性加成</p>
-        <p>四、暴伤区：(1+暴击率×暴击伤害)</p>
-        <p>五、反应区：元素反应×(1+精通加成)</p>
-        <p>六、防御区：((人物等级+100)/(人物等级+怪物等级+200))</p>
-        <p>七、抗性区：(1-怪物抗性)</p>
-        <p>伤害 = 所有区域的乘积</p>
-      </div>
     </div>
-  </div>
-  <div class="footer">
-    <div class="check">- 2189 -</div>
-  </div>
+    <div class="footer">
+        <div id="content" class="check"></div>
+    </div>
 </div>
-<script type="text/javascript" src="../js/text.js"></script> 
-<script type="text/javascript" src="../js/calcDamage.js"></script> 
+<script type="text/javascript" src="/resources/js/text.js"></script> 
+<script type="text/javascript" src="/resources/js/calcDamage.js"></script> 
 <script>
 const Gdate = {
   data() {
@@ -132,6 +133,14 @@ const Gdate = {
   }
 }
 Vue.createApp(Gdate).mount('#Gdate')
+</script> 
+<script>
+        fetch('/resources/public/version.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerText = data;
+            })
+            .catch(error => console.error('Error:', error));
 </script>
 </body>
 </html>

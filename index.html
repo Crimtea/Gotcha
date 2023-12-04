@@ -4,67 +4,75 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>正在访问Gotcha...</title>
-<link rel="icon" href="./image/Gotcha.svg">
+<title>Gotcha</title>
+<link rel="icon" href="/resources/image/Gotcha.svg">
 <style type="text/css">
-@import"css/style.css";
+@import"/resources/css/style.css";
 </style>
 <style type="text/css">
-@import"css/index.css";
+@import"/resources/css/index.css";
 </style>
 </head>
 
 <body>
 <div class="header">
-  <div class="main">Gotcha</div>
+    <div class="main">Gotcha</div>
 </div>
 <div class="root">
-  <div class="root_page">
-    <div class="page">
-      <div class="card" id="recharge"> 
-        <!--在此处div内写内容-->
-        <div class="notice">
-          <li>注：输入的是<a style="color: black">度数</a>，不是金额。</li>
-          <br>
-        </div>
-        <div id="light">
-          <input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')"
+    <div class="root_page">
+        <div class="page">
+            <div class="card" id="recharge"> 
+                <!--在此处div内写内容-->
+                <div class="notice">
+                    <li>注：输入的是<a style="color: black">度数</a>，不是金额。</li>
+                    <br>
+                </div>
+                <div id="light">
+                    <input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')"
                             class="text" placeholder="💡/度数" />
-          <button id="lightRecharge">照明充值</button>
-          <button id="goLight">余额</button>
-        </div>
-        <div id="air">
-          <input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')"
+                    <button id="lightRecharge">照明充值</button>
+                    <button id="goLight">余额</button>
+                </div>
+                <div id="air">
+                    <input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')"
                             class="text" placeholder="❄️/度数" />
-          <button id="airRecharge">空调充值</button>
-          <button id="goAir">余额</button>
+                    <button id="airRecharge">空调充值</button>
+                    <button id="goAir">余额</button>
+                </div>
+            </div>
+            <div class="card" id="readme"> <a href="./page/readme.html">
+                <button class="web_button">说明文档</button>
+                </a> <a href="./test/testPage.html">
+                <button class="web_button">测试页面</button>
+                </a> </div>
+            <div class="card" id="web_list"> 
+                <!--在此处div内写内容-->
+                <div id="web_list_left"><a href="https://mdkd.pinduoduo.com/weixin/identificationCode">
+                    <button class="web_button">多多快递</button>
+                    </a> <a href="https://sharechain.qq.com/ab8209f9b525d7d572d13a7f9ff64004">
+                    <button class="web_button">黑板</button>
+                    </a> </div>
+                <div id="web_list_right"> <a href="http://www.tcnvmms.com/e?c=14390">
+                    <button class="web_button">楼下右侧售货机</button>
+                    </a> <a href="./page/more.html">
+                    <button class="web_button">更多跳板</button>
+                    </a> </div>
+            </div>
         </div>
-      </div>
-      <div class="card" id="readme"> <a href="./page/readme.html">
-        <button class="web_button">说明文档</button>
-        </a> <a href="./page/book.html">
-        <button class="web_button">书架</button>
-        </a> </div>
-      <div class="card" id="web_list"> 
-        <!--在此处div内写内容-->
-        <div id="web_list_left"><a href="https://mdkd.pinduoduo.com/weixin/identificationCode">
-          <button class="web_button">多多快递</button>
-          </a> <a href="https://sharechain.qq.com/ab8209f9b525d7d572d13a7f9ff64004">
-          <button class="web_button">黑板</button>
-          </a> </div>
-        <div id="web_list_right"> <a href="http://www.tcnvmms.com/e?c=14390">
-          <button class="web_button">楼下右侧售货机</button>
-          </a> <a href="./page/more.html">
-          <button class="web_button">更多跳板</button>
-          </a> </div>
-      </div>
     </div>
-  </div>
-  <div class="footer">
-    <div class="check">- 0815 -</div>
-  </div>
+    <div class="footer">
+        <div id="content" class="check"></div>
+    </div>
 </div>
-<script type="text/javascript" src="js/index.js"></script>
+<script type="text/javascript" src="/resources/js/index.js"></script> 
+<script>
+        fetch('/resources/public/version.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerText = data;
+            })
+            .catch(error => console.error('Error:', error));
+</script>
 </body>
 </html>
 <!--

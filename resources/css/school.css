@@ -3,7 +3,7 @@
 .file_icon {
     height: 1000px;
     width: 1000px;
-    background-image: url("../images/bed.png");
+    background-image: url("../../images/bed.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
