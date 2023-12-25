@@ -2,30 +2,51 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>无标题文档</title>
+<title>♠ ♥ ♦ ♣</title>
 <style>
-card_box {
+    body{
+        display: flex;
+        justify-content: center;
+    }
+#card_box {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-}
-card {
-    height: 128px;
-    width: 128px;
-    background-color: blanchedalmond;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    flex-wrap: wrap;
+    width: 991px;
 }
 </style>
 </head>
+<body style="background-color: black">
+    <div id="card_box"></div>
+<script>
+  const cardImages = [
+    "2-clubs", "2-diamonds", "2-hearts", "2-spades",
+    "3-clubs", "3-diamonds", "3-hearts", "3-spades",
+    "4-clubs", "4-diamonds", "4-hearts", "4-spades",
+    "5-clubs", "5-diamonds", "5-hearts", "5-spades",
+    "6-clubs", "6-diamonds", "6-hearts", "6-spades",
+    "7-clubs", "7-diamonds", "7-hearts", "7-spades",
+    "8-clubs", "8-diamonds", "8-hearts", "8-spades",
+    "9-clubs", "9-diamonds", "9-hearts", "9-spades",
+    "10-clubs", "10-diamonds", "10-hearts", "10-spades",
+    "jack-clubs", "jack-diamonds", "jack-hearts", "jack-spades",
+    "queen-clubs", "queen-diamonds", "queen-hearts", "queen-spades",
+    "king-clubs", "king-diamonds", "king-hearts", "king-spades",
+    "ace-clubs", "ace-diamonds", "ace-hearts", "ace-spades",
+    "joker",
+  ];
 
-<body>
-<card_box>
-    <card><img src="../resources/image/poker/card-2-clubs.svg"></card>
-    <card>nihao </card>
-    <card>nihao </card>
-</card_box>
+  const cardDiv = document.getElementById("card_box");
+  cardImages.forEach(function(image) {
+    const card = document.createElement("card");
+    const img = document.createElement("img");
+    img.setAttribute("src", `../resources/image/poker/card-${image}.svg`);
+    img.setAttribute("width", "117");
+    card.appendChild(img);
+    cardDiv.appendChild(card);
+  });
+</script>
 </body>
 </html>
