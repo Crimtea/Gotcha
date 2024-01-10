@@ -1,84 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gotcha</title>
-<link rel="icon" href="/Gotcha/resources/image/Gotcha.svg">
-<style type="text/css">
-@import"/Gotcha/resources/css/style.css";
-</style>
-<style type="text/css">
-@import"/Gotcha/resources/css/index.css";
-</style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>单词训练</title>
+	<style type="text/css">
+		h1, td {
+			color: white;
+			text-align: center;
+		}
+		.int_input {
+			type: text;
+			text-align: center;
+			width: 25px;
+			color: white;
+			background-color: #303841;
+		}
+		button {
+			color: black;
+		}
+	</style>
 </head>
+<body bgcolor="#303841">
+	<table align="center" width="400">
+		<caption><h1 class="white">单词训练</h1></caption>
+		<tr>
+			<td>
+				第
+				<input class="int_input" id="start" value="1" oninput="value=value.replace(/[^\d]/g,'')">
+				~
+				<input class="int_input" id="end" value="20" oninput="value=value.replace(/[^\d]/g,'')">个
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<p style="height: 150px; font-size: 80px;" id="randomLine"></p>
+				<p style="height: 150px; color: #303841;" id="randomLine2"></p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<input type="button" id="btn_word" value="单词已显示" onclick="changeColor1('randomLine')">
+				<input type="button" id="btn_zh" value="注释已隐藏" onclick="changeColor2('randomLine2')">
+			</td>
+		</tr>
+		<tr>
+			<td><button onclick="readRandomOddLine()">ENTER:下一个</button></td>
+		</tr>
 
-<body>
-<div class="header">
-    <div class="main">Gotcha</div>
-</div>
-<div class="root">
-    <div class="root_page">
-        <div class="page">
-            <div class="card" id="recharge"> 
-                <!--在此处div内写内容-->
-                <div class="notice">
-                    <li>注：输入的是<a style="color: black">度数</a>，不是金额。</li>
-                    <br>
-                </div>
-                <div id="light">
-                    <input type="text" id="text_light" name="blank_light" oninput="value=value.replace(/[^\d]/g,'')"
-                            class="text" placeholder="💡/度数" />
-                    <button id="lightRecharge">照明充值</button>
-                    <button id="goLight">余额</button>
-                </div>
-                <div id="air">
-                    <input type="text" id="text_air" name="blank_air" oninput="value=value.replace(/[^\d]/g,'')"
-                            class="text" placeholder="❄️/度数" />
-                    <button id="airRecharge">空调充值</button>
-                    <button id="goAir">余额</button>
-                </div>
-            </div>
-            <div class="card" id="readme"> <a href="./page/readme.html">
-                <button class="web_button">说明文档</button>
-                </a> <a href="./test/testPage.html">
-                <button class="web_button">测试页面</button>
-                </a> </div>
-            <div class="card" id="web_list"> 
-                <!--在此处div内写内容-->
-                <div id="web_list_left"><a href="https://mdkd.pinduoduo.com/weixin/identificationCode">
-                    <button class="web_button">多多快递</button>
-                    </a> <a href="https://sharechain.qq.com/ab8209f9b525d7d572d13a7f9ff64004">
-                    <button class="web_button">黑板</button>
-                    </a> </div>
-                <div id="web_list_right"> <a href="http://www.tcnvmms.com/e?c=14390">
-                    <button class="web_button">楼下右侧售货机</button>
-                    </a> <a href="./page/more.html">
-                    <button class="web_button">更多跳板</button>
-                    </a> </div>
-            </div>
-        </div>
-    </div>
-    <div class="footer">
-        <div id="content" class="check"></div>
-    </div>
-</div>
-<script type="text/javascript" src="/Gotcha/resources/js/index.js"></script> 
-<script>
-        fetch('/Gotcha/resources/public/version.txt')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('content').innerText = data;
-            })
-            .catch(error => console.error('Error:', error));
-</script>
+	</table>
+	<script>
+		// 切换字体颜色
+		var isRed1 = true;
+		function changeColor1(itemID) {
+			var a = document.getElementById(itemID);
+			if (isRed1) {
+				a.style.color = "#303841"; // 更改文本颜色为黑色
+				isRed1 = false;
+				document.getElementById("btn_word").value = "单词已隐藏";
+				} else {
+					a.style.color = "white"; // 更改文本颜色为红色
+					isRed1 = true;
+					document.getElementById("btn_word").value = "单词已显示"
+				}
+			}
+		var isRed2 = false;
+		function changeColor2(itemID) {
+			var a = document.getElementById(itemID);
+			if (isRed2) {
+				a.style.color = "#303841"; // 更改文本颜色为黑色
+				isRed2 = false;
+				document.getElementById("btn_zh").value = "注释已隐藏";
+				} else {
+					a.style.color = "white"; // 更改文本颜色为红色
+					isRed2 = true;
+					document.getElementById("btn_zh").value = "注释已显示";
+				}
+			}
+		// 生成 min ~ max 之间的随机数
+		function getRandomOddNumber(min, max) {
+			var num = Math.floor(Math.random() * (max - min + 1)) + min;
+			return num;
+		}
+		// 随机插入 start 到 end 之间的项
+		function readRandomOddLine() {
+			var start = parseInt(document.getElementById('start').value, 10);
+			var end = parseInt(document.getElementById('end').value, 10);
+			fetch('trainDict.txt')
+			.then(response => response.text())
+			.then(data => {
+				var lines = data.split('\n'); // 将文件内容分割成行
+				var randomOddLine = getRandomOddNumber(start, end); // 会给出 start 到 end 范围的数字
+				document.getElementById('randomLine').innerHTML = lines[randomOddLine*2-2];
+				document.getElementById('randomLine2').innerHTML = lines[randomOddLine*2-1];
+			});
+		}
+		readRandomOddLine();
+  </script>
 </body>
 </html>
-<!--
-<div align="center">
-  <video width="300" height="375" controls>
-    <source src="https://api.keepwork.com/ts-storage/siteFiles/23723/raw#findme.mp4" type="video/mp4">
-  </video>
-</div>
--->
