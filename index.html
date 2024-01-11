@@ -1,70 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>单词训练</title>
-	<style type="text/css">
-		h1, td {
-			color: white;
-			text-align: center;
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>单词训练</title>
+<link rel="icon" href="./resources/image/Gotcha.svg">
+<style type="text/css">
+	@import"./resources/css/style.css";
+	@import"./resources/css/index.css";
+	.int_input {
+		type: text;
+		text-align: center;
+		width: 25px;
 		}
-		.int_input {
-			type: text;
-			text-align: center;
-			width: 25px;
-			color: white;
-			background-color: #303841;
-		}
-		button {
-			color: black;
-		}
-	</style>
+</style>
 </head>
-<body bgcolor="#303841">
-	<table align="center" width="400">
-		<caption><h1 class="white">单词训练</h1></caption>
-		<tr>
-			<td>
-				第
-				<input class="int_input" id="start" value="1" oninput="value=value.replace(/[^\d]/g,'')">
-				~
-				<input class="int_input" id="end" value="20" oninput="value=value.replace(/[^\d]/g,'')">个
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<p style="height: 150px; font-size: 80px;" id="randomLine"></p>
-				<p style="height: 120px; color: #303841;" id="randomLine2"></p>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<input type="button" id="btn_word" value="单词已显示" onclick="changeColor1('randomLine')">
-				<input type="button" id="btn_zh" value="注释已隐藏" onclick="changeColor2('randomLine2')">
-			</td>
-		</tr>
-		<tr>
-			<td><button onclick="readRandomOddLine()" style="height: 50px">ENTER:下一个</button></td>
-		</tr>
-		<tr>
-			<td><a href="./words.html">
-                    <button class="web_button">查看全部单词</button>
-                    </a></td>
-		</tr>
 
-	</table>
-	<script>
-		// 切换字体颜色
+<body>
+<div class="header">
+    <div class="main">单词训练</div>
+</div>
+<div class="root">
+    <div class="root_page">
+        <div class="page">
+            <div class="card" id="recharge"> 
+                <!--在此处div内写内容-->
+                <div>
+					第
+					<input class="int_input" id="start" value="1" oninput="value=value.replace(/[^\d]/g,'')">
+					~
+					<input class="int_input" id="end" value="20" oninput="value=value.replace(/[^\d]/g,'')">个
+				</div>
+            </div>
+            <div class="card">
+            	<div align="center">
+            		<p style="height: 60px; font-size: 45px;" id="randomLine"></p>
+					<p style="height: 140px; color: white;" id="randomLine2"></p>
+				</div>
+            </div>
+            <div class="card" id="web_list"> 
+                <!--在此处div内写内容-->
+                <div>
+                	<input type="button" id="btn_word" value="单词已显示" onclick="changeColor1('randomLine')">
+					<input type="button" id="btn_zh" value="注释已隐藏" onclick="changeColor2('randomLine2')">
+				</div>
+            </div>
+            <div class="card" id="web_list"> 
+                <!--在此处div内写内容-->
+                <div>
+                	<button onclick="readRandomOddLine()" style="height: 50px">ENTER:下一个</button>
+				</div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div id="content" class="check"></div>
+    </div>
+</div>
+<script type="text/javascript" src="./resources/js/index.js"></script> 
+<script>
+        fetch('./resources/public/version.txt')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('content').innerText = data;
+            })
+            .catch(error => console.error('Error:', error));
+    		// 切换字体颜色
 		var isRed1 = true;
 		function changeColor1(itemID) {
 			var a = document.getElementById(itemID);
 			if (isRed1) {
-				a.style.color = "#303841"; // 更改文本颜色为黑色
+				a.style.color = "white"; // 更改文本颜色为假
 				isRed1 = false;
 				document.getElementById("btn_word").value = "单词已隐藏";
 				} else {
-					a.style.color = "white"; // 更改文本颜色为红色
+					a.style.color = "#1f2233"; // 更改文本颜色为真
 					isRed1 = true;
 					document.getElementById("btn_word").value = "单词已显示"
 				}
@@ -73,11 +84,11 @@
 		function changeColor2(itemID) {
 			var a = document.getElementById(itemID);
 			if (isRed2) {
-				a.style.color = "#303841"; // 更改文本颜色为黑色
+				a.style.color = "white"; // 更改文本颜色为假
 				isRed2 = false;
 				document.getElementById("btn_zh").value = "注释已隐藏";
 				} else {
-					a.style.color = "white"; // 更改文本颜色为红色
+					a.style.color = "#1f2233"; // 更改文本颜色为真
 					isRed2 = true;
 					document.getElementById("btn_zh").value = "注释已显示";
 				}
@@ -101,6 +112,13 @@
 			});
 		}
 		readRandomOddLine();
-  </script>
+</script>
 </body>
 </html>
+<!--
+<div align="center">
+  <video width="300" height="375" controls>
+    <source src="https://api.keepwork.com/ts-storage/siteFiles/23723/raw#findme.mp4" type="video/mp4">
+  </video>
+</div>
+-->
