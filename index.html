@@ -21,7 +21,7 @@
 	<div class="main">单词训练</div>
 </div>
 <div class="root">
-	<div class="root_page">
+	<div class="root_page" id="showLight">
 		<div class="page">
 			<div class="card" id="recharge"> 
 				<!--在此处div内写内容-->
@@ -35,18 +35,25 @@
 			<div class="card">
 				<div align="center">
 					<div style="height: 80px;">
-						<!-- <p style="font-size: 45px; display: block;" id="randomLine"></p> -->
-						<input class="u_input" id="randomLine" type="text" style="height: 65%; width: 95%; font-size: 45px; margin: 45px 0px; display: block;" align="center" disabled>
-						<input class="u_input" id="your_input" type="text" style="height: 65%; width: 95%; font-size: 45px; margin: 45px 0px; display: none;" align="center">
+
+						<input class="u_input" id="text_word" type="text" style="height: 65%; width: 95%; font-size: 45px; margin: 45px 0px; display: block;" align="center" disabled>
+
+						<input class="u_input" id="your_input" type="text" style="height: 65%; width: 95%; font-size: 45px; margin: 45px 0px; display: none;" align="center" placeholder="">
 					</div>
-					<p style="height: 140px; color: white;" id="randomLine2"></p>
+					<p style="height: 140px; color: black;" id="text_annotation"></p>
 				</div>
 			</div>
 			<div class="card" id="web_list"> 
 				<!--在此处div内写内容-->
 				<div>
-					<input type="button" id="btn_word" value="单词已显示" onclick="changeColor1('randomLine')">
-					<input type="button" id="btn_zh" value="注释已隐藏" onclick="changeColor2('randomLine2')">
+
+					<button id="btn_switch" style="display: block;" onclick="switchModeColor()">
+						<span id="text_mode1" style="color: red;">全部显示</span>
+						/
+						<span id="text_mode2" style="color: black;">看词说意</span>
+						/
+						<span id="text_mode3" style="color: black;">单词拼写</span>
+					</button>
 				</div>
 			</div>
 			<div class="card" id="web_list"> 
@@ -76,131 +83,133 @@
 	})
 	.catch(error => console.error('Error:', error));
 
+
+	// 切换按钮部分颜色的显示，以向用户提示当前处于何种模式
+	var modeType = 1;
+	function switchModeColor() {
+		var mode1Color = document.getElementById("text_mode1");
+		var mode2Color = document.getElementById("text_mode2");
+		var mode3Color = document.getElementById("text_mode3");
+		if (modeType == 1){
+			modeType = 2;
+			mode1Color.style.color="black";
+			mode2Color.style.color="red";
+		} else if (modeType == 2) {
+			modeType = 3;
+			mode2Color.style.color="black";
+			mode3Color.style.color="red";
+		} else if (modeType == 3) {
+			modeType = 1;
+			mode1Color.style.color="red";
+			mode3Color.style.color="black";
+		}
+		switchMode(modeType);
+
+	}
+
+
+	// 切换模式
+	var inputExist = false;  // 用来记录输入框是否存在，初始为不存在
+	function switchMode(num_mode) {
+		var word = document.getElementById("text_word");
+		var yourInput = document.getElementById("your_input");
+		var annotation = document.getElementById("text_annotation");
+		if (num_mode == 1){
+			word.style.display = "block";
+			yourInput.style.display = "none";
+			annotation.style.color = "black";
+			inputExist = false;
+		} else if (num_mode == 2){
+			word.style.display = "block";
+			yourInput.style.display = "none";
+			annotation.style.color = "white";
+		} else if (num_mode == 3){
+			word.style.display = "none";
+			yourInput.style.display = "block";
+			annotation.style.color = "black";
+			inputExist = true;
+		}
+	}
+
+
+	// 点击 下一个
+	function clickBtn() {
+		if (inputExist == true) {
+			checkWord();
+		} else {
+			readRandomLine();
+		}
+	}
+
+
 	// 判断输入框的正误
 	function checkWord() {
-		var targetPoint = document.getElementById("randomLine").value;
-		var yourPoint = document.getElementById('your_input').value;
-		if (targetPoint == yourPoint) {
-			alert("√√√"); // 正确的情况下，
-			readRandomOddLine();
+		var targetWord = document.getElementById("text_word");
+		var yourWord = document.getElementById('your_input');
+		if (targetWord.value == yourWord.value) {
+			// 拼写正确情况下 清空输入框 并将输入框背景颜色改为 绿
+			yourWord.placeholder = "";
+			yourWord.style.backgroundColor = "#55bb8a";
+			readRandomLine();
 		} else {
-			alert("×××")
+			// 拼写错误情况下 输入框加入提示 并将输入框背景颜色改为 红
+			yourWord.placeholder = "!(×_×)!";
+			yourWord.style.backgroundColor = "#de1c31";
 		}
 		document.getElementById('your_input').value = "";
+		setTimeout(function() {
+				yourWord.style.backgroundColor = "#F7F8FC";
+			}, 200);
 	}
 
-	var isRed1 = true;  // 用来记录字体颜色是否为真，初始为真
-	// 点击事件
-	function clickBtn() {
-		if (isRed1 == true) {
-			readRandomOddLine();
-		} else {
-			checkWord();
-		}
-	}
-
-	// 切换字体颜色
-	function changeColor1(itemID) {
-		var a = document.getElementById(itemID);
-		if (isRed1) {
-			a.style.color = "white";  // 更改文本颜色为假
-			isRed1 = false;
-			document.getElementById("btn_word").value = "单词已隐藏";
-		} else {
-			a.style.color = "#1f2233";  // 更改文本颜色为真
-			isRed1 = true;
-			document.getElementById("btn_word").value = "单词已显示"
-		}
-	
-		// 获取两个交替显示的标签的ID
-		var input1 = document.getElementById("randomLine");
-		var input2 = document.getElementById("your_input");
-		if (input1.style.display === "none") {  // 如果01为不显示，改为01显示，02不显示
-			input1.style.display = "block";
-			input2.style.display = "none";
-		} else {  // 如果01为显示，改为01不显示，02显示
-			input1.style.display = "none";
-			input2.style.display = "block";
-		}
-	}
-
-	var isRed2 = false;
-	function changeColor2(itemID) {
-		var a = document.getElementById(itemID);
-		if (isRed2) {
-			a.style.color = "white"; // 更改文本颜色为假
-			isRed2 = false;
-			document.getElementById("btn_zh").value = "注释已隐藏";
-		} else {
-			a.style.color = "#1f2233"; // 更改文本颜色为真
-			isRed2 = true;
-			document.getElementById("btn_zh").value = "注释已显示";
-		}
-	}
 
 	// 生成 min ~ max 之间的随机数
-	function getRandomOddNumber(min, max) {
+	function getRandomNumber(min, max) {
 		var num = Math.floor(Math.random() * (max - min + 1)) + min;
 		return num;
 	}
 
+
 	// 随机插入 start 到 end 之间的项
-	function readRandomOddLine() {
+	function readRandomLine() {
 		var start = parseInt(document.getElementById('start').value, 10);
 		var end = parseInt(document.getElementById('end').value, 10);
 		fetch('trainDict.txt')
 		.then(response => response.text())
 		.then(data => {
 			var lines = data.split('\n'); // 将文件内容分割成行
-			var randomOddLine = getRandomOddNumber(start, end); // 会给出 start 到 end 范围的数字
-			document.getElementById('randomLine').value = lines[randomOddLine*2-2];
-			document.getElementById('randomLine2').innerHTML = lines[randomOddLine*2-1];
+			var randomLine = getRandomNumber(start, end); // 会给出 start 到 end 范围的数字
+			document.getElementById('text_word').value = lines[randomLine*2-2];
+			document.getElementById('text_annotation').innerHTML = lines[randomLine*2-1];
 		});
 	}
-	readRandomOddLine();
 
-	// 背单词模式（暂时没使用）
-	function wordMode(){
-		var input1 = document.getElementById("randomLine");
-		var input2 = document.getElementById("randomLine2");
-			input1.style.color = "black";
-			input2.style.color = "white";
-	}
 
-	// 记意思模式（暂时没使用）
-	function meanMode(){
-		var input1 = document.getElementById("randomLine");
-		var input2 = document.getElementById("randomLine2");
-			input1.style.color = "#f8f8f8";
-			input2.style.color = "black";
-	}
+	readRandomLine();
 
 	// 获取按钮元素
-	var button = document.getElementById("btn_run");
- 
+	var btnEnter = document.getElementById("btn_run");
+
+
 	// 当按钮被点击时执行的函数
 	function handleClick() {
 		clickBtn();
 	}
- 
+
+
 	// 当按下Enter键时执行的函数
 	document.addEventListener('keydown', function(event) {
-    	if (event.code === 'Enter') {
-        	event.preventDefault(); // 防止默认提交表单等动作发生
-        	handleClick(); // 调用按钮被点击时的函数
-    	}
+		if (event.code === 'Enter') {
+			event.preventDefault(); // 防止默认提交表单等动作发生
+			handleClick(); // 调用按钮被点击时的函数
+		}
 	});
- 
+
+
 	// 将按钮点击事件与handleClick函数关联起来
-	button.onclick = handleClick;
+	btnEnter.onclick = handleClick;
+
 
 </script>
 </body>
 </html>
-<!--
-<div align="center">
-  <video width="300" height="375" controls>
-	<source src="https://api.keepwork.com/ts-storage/siteFiles/23723/raw#findme.mp4" type="video/mp4">
-  </video>
-</div>
--->

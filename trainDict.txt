@@ -68,7 +68,7 @@ padding
 内边距
 margin
 外边距
-boder
+border
 边框
 bottom
 底部
@@ -186,3 +186,5 @@ target
 目标
 shadow
 影子，阴影
+placeholder
+占位符（用于文本提示）
