@@ -148,16 +148,17 @@
 		var yourWord = document.getElementById('your_input');
 		if (targetWord.value == yourWord.value) {
 			// 拼写正确情况下 清空输入框 并将输入框背景颜色改为 绿
-			yourWord.placeholder = "";
+			yourWord.placeholder = "对咯！";
 			yourWord.style.backgroundColor = "#55bb8a";
 			readRandomLine();
 		} else {
 			// 拼写错误情况下 输入框加入提示 并将输入框背景颜色改为 红
-			yourWord.placeholder = "!(×_×)!";
+			yourWord.placeholder = "错啦！";
 			yourWord.style.backgroundColor = "#de1c31";
 		}
 		document.getElementById('your_input').value = "";
 		setTimeout(function() {
+				yourWord.placeholder = "";
 				yourWord.style.backgroundColor = "white";
 			}, 200);
 	}
