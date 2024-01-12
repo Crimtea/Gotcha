@@ -36,8 +36,8 @@
 				<div align="center">
 					<div style="height: 80px;">
 						<!-- <p style="font-size: 45px; display: block;" id="randomLine"></p> -->
-						<input class="u_input" id="randomLine" type="text" style="height: 60px; width: auto; font-size: 45px; margin: 45px 0px; display: block;" align="center" disabled>
-						<input class="u_input" id="your_input" type="text" style="height: 60px; width: auto; font-size: 45px; margin: 45px 0px; display: none;" align="center">
+						<input class="u_input" id="randomLine" type="text" style="height: 65%; width: 95%; font-size: 45px; margin: 45px 0px; display: block;" align="center" disabled>
+						<input class="u_input" id="your_input" type="text" style="height: 65%; width: 95%; font-size: 45px; margin: 45px 0px; display: none;" align="center">
 					</div>
 					<p style="height: 140px; color: white;" id="randomLine2"></p>
 				</div>
@@ -53,6 +53,8 @@
 				<!--在此处div内写内容-->
 				<div>
 					<input type="button" id="btn_run" value="ENTER:下一个" onclick="clickBtn()" style="height: 50px">
+					<!-- <input type="button" id="btn_word" value="word" onclick="wordMode()" style="height: 50px"> -->
+					<!-- <input type="button" id="btn_mean" value="mean" onclick="meanMode()" style="height: 50px"> -->
 				</div>
 			</div>
 		   	<a href="./words.html">
@@ -67,19 +69,6 @@
 <script type="text/javascript" src="./resources/js/index.js"></script> 
 <script type="text/javascript" src="./resources/js/wordsTrain.js"></script> 
 <script>
-
-
-
-
-
-
-
-
-
-
-
-
-
 	fetch('./resources/public/version.txt') // 获取文件
 	.then(response => response.text())
 	.then(data => {
@@ -87,45 +76,28 @@
 	})
 	.catch(error => console.error('Error:', error));
 
-
-
-
-
-
 	// 判断输入框的正误
 	function checkWord() {
 		var targetPoint = document.getElementById("randomLine").value;
 		var yourPoint = document.getElementById('your_input').value;
-
 		if (targetPoint == yourPoint) {
-			alert("√√√");
+			alert("√√√"); // 正确的情况下，
+			readRandomOddLine();
 		} else {
 			alert("×××")
 		}
-
 		document.getElementById('your_input').value = "";
-
-		readRandomOddLine();
 	}
 
-
 	var isRed1 = true;  // 用来记录字体颜色是否为真，初始为真
-
-
 	// 点击事件
 	function clickBtn() {
-		readRandomOddLine();
-
-		if (isRed1 == false) {
+		if (isRed1 == true) {
+			readRandomOddLine();
+		} else {
 			checkWord();
 		}
 	}
-
-
-
-
-
-
 
 	// 切换字体颜色
 	function changeColor1(itemID) {
@@ -142,8 +114,7 @@
 	
 		// 获取两个交替显示的标签的ID
 		var input1 = document.getElementById("randomLine");
-    	var input2 = document.getElementById("your_input");
-
+		var input2 = document.getElementById("your_input");
 		if (input1.style.display === "none") {  // 如果01为不显示，改为01显示，02不显示
 			input1.style.display = "block";
 			input2.style.display = "none";
@@ -152,27 +123,6 @@
 			input2.style.display = "block";
 		}
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	var isRed2 = false;
 	function changeColor2(itemID) {
@@ -188,47 +138,11 @@
 		}
 	}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	// 生成 min ~ max 之间的随机数
 	function getRandomOddNumber(min, max) {
 		var num = Math.floor(Math.random() * (max - min + 1)) + min;
 		return num;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	// 随机插入 start 到 end 之间的项
 	function readRandomOddLine() {
@@ -245,20 +159,40 @@
 	}
 	readRandomOddLine();
 
+	// 背单词模式（暂时没使用）
+	function wordMode(){
+		var input1 = document.getElementById("randomLine");
+		var input2 = document.getElementById("randomLine2");
+			input1.style.color = "black";
+			input2.style.color = "white";
+	}
 
+	// 记意思模式（暂时没使用）
+	function meanMode(){
+		var input1 = document.getElementById("randomLine");
+		var input2 = document.getElementById("randomLine2");
+			input1.style.color = "#f8f8f8";
+			input2.style.color = "black";
+	}
 
-
-
-
-
-
-
-
-
-
-
-
-
+	// 获取按钮元素
+	var button = document.getElementById("btn_run");
+ 
+	// 当按钮被点击时执行的函数
+	function handleClick() {
+		clickBtn();
+	}
+ 
+	// 当按下Enter键时执行的函数
+	document.addEventListener('keydown', function(event) {
+    	if (event.code === 'Enter') {
+        	event.preventDefault(); // 防止默认提交表单等动作发生
+        	handleClick(); // 调用按钮被点击时的函数
+    	}
+	});
+ 
+	// 将按钮点击事件与handleClick函数关联起来
+	button.onclick = handleClick;
 
 </script>
 </body>

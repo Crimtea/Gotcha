@@ -30,8 +30,8 @@ select
 选择; 挑选; 选拔;（计算机：select 元素可创建单选或多选菜单）
 password
 密码（计算机：input标签、type：password）
-checkBox
-Checkbox 对象代表一个 HTML 表单中的 一个选择框。在 HTML 文档中 type="checkbox; 每出现一次，Checkbox 对象就会被创建。
+checkbox
+checkbox 对象代表一个 HTML 表单中的 一个选择框。在 HTML 文档中 type="checkbox; 每出现一次，checkbox 对象就会被创建。
 textarea
 文本框，文本域（计算机： 标签定义多行的文本输入控件）
 type
