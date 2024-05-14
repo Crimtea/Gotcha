@@ -14,6 +14,8 @@
         var target = location.href.split('?');
         if (target.length != 1) {
             target = target[1];
+        } else {
+            window.open('http://192.168.43.195:8080');
         }
         target = target.split('&');
         for (var i = 0; i < target.length; i++) {
